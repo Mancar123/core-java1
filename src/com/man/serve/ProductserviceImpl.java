@@ -1,6 +1,8 @@
 package com.man.serve;
 
 import com.man.dto.ProductDto;
+import com.man.repository.ProductRepo;
+import com.man.repository.ProductrepoImpl;
 
 public class ProductserviceImpl implements ProductService {
 
@@ -104,8 +106,11 @@ public class ProductserviceImpl implements ProductService {
             System.out.println("DTO is null");
             return false;
         }
+        ProductRepo productRepo=new ProductrepoImpl();
+        boolean saved=productRepo.persist(productDto);
+
 
         System.out.println("Product saved successfully.");
-        return true;
+        return saved;
     }
 }
